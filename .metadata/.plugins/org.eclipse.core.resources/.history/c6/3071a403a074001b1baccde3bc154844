@@ -1,0 +1,40 @@
+package orientacao_objetos7;
+
+public class Game {
+	
+	private Player player;
+	private Inimigo inimigo;
+	
+	public Game() {
+		//player = new Player();
+		player = new Tipo1(); //Não vai dar erro já que declarei como Player nas linhas de cima, pois o Tipo1 é tbm um Player, com o extends
+		//verificando se player já foi inicializado
+		if (player == null) {
+			System.out.println("O player não foi inicializado. Vou iniciar para você")
+			player = new Player();
+		}else {
+			System.out.println("O player foi inicializado");
+		}
+		
+		//Verificando se player já foi instanciado
+		if(player instanceof Player) {
+			System.out.println("O player foi inicializado com sucesso e faz referência a classe Player")
+		}
+		inimigo = new Inimigo();
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+	public Inimigo getInimigo() {
+		return inimigo;
+	}
+	
+	
+	public static void main(String[] args) {
+		Game game = new Game();
+		Player player = game.getPlayer();
+		player.atacarInimigo(game.getInimigo());
+		System.out.println(game.getInimigo().life);
+	}
+}

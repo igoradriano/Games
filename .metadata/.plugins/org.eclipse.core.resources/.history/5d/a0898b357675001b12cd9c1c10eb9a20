@@ -1,0 +1,39 @@
+package inicio_logica_games;
+
+public class Game implements Runnable{ //Interface Runnable permite trabalhar com threads
+	
+	private boolean isRunning; //se o Jogo ta rodando. Por padrão é falso
+	private Thread thread;  //declarando minha thread do tipo Thread
+	
+	public static void main(String[] args) {
+		Game game = new Game();  //Instanciando classe game
+		game.start();  //Para iniciar o Jogo
+	}
+	
+	public synchronized void start() { //método sincronizado assim que chamar ele
+		isRunning = true;  // Por padrão é false, mas como o jogo so roda se for true, atribuo o true aqui.
+		thread = new Thread(this);  //Instanciando a minha Thread com o Objeto atual que estou trabalhando
+		thread.start();
+	}
+
+	public void atualizar() {  
+		//Atualizar o Jogo.
+		System.out.println("Método Atualizar");
+	}
+	
+	public void renderizar() {	
+		//Renderizar o Jogo.
+		System.out.println("Método Renderizar");
+	}
+@Override
+public void run() {  //THREAD, permite que os 2 métodos rodem simultaneamente dentro do loop
+	
+	while(isRunning) {
+		atualizar();
+		renderizar();
+		
+	}
+	
+}
+
+}

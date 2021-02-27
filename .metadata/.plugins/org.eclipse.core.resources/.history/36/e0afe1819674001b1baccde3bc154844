@@ -1,0 +1,12 @@
+package orientacao_objetos5;
+
+public class Main {
+	//Método Construtor é quando temos o public nome da classe e o que fazer
+	public Main() {
+		System.out.println("Classe criada");
+	}
+	
+	public static void main(String[] args) {
+		new Main();
+	}
+}

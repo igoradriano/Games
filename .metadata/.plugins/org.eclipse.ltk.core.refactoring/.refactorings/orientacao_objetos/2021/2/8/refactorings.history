@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;orientaca_objetos&apos; to &apos;orientacao_objetos&apos;&#x0D;&#x0A;- Original project: &apos;orientacao_objetos&apos;&#x0D;&#x0A;- Original element: &apos;orientacao_objetos/src/orientaca_objetos&apos;&#x0D;&#x0A;- Renamed element: &apos;orientacao_objetos/src/orientacao_objetos&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;orientaca_objetos&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;orientaca_objetos" name="orientacao_objetos" qualified="false" references="true" stamp="1613488882332" textual="false" version="1.0"/>
+</session>

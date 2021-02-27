@@ -1,0 +1,12 @@
+package orientacao_objetos6;
+
+public class Player {
+	
+	public int vidaInicial, tempo;
+	
+	//Método Construtor:
+	public Player(int vidainicial, int tempo) {
+		
+	}
+
+}

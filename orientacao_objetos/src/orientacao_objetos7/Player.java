@@ -1,0 +1,16 @@
+package orientacao_objetos7;
+
+public class Player {
+	
+	private void nascer() {  //método privado dessa classe
+		System.out.println("Nasceu...");
+	}
+	protected void morrer() {  //método protegido pode ser extendido para outra classe
+		System.out.println("Morreu..."); //mas se nao usar extend não pode chamá-lo
+	}
+	public void atacarInimigo(Inimigo inimigo) {
+		System.out.println("Atacou o Inimigo");
+		inimigo.life = inimigo.life - 1;
+	}
+
+}

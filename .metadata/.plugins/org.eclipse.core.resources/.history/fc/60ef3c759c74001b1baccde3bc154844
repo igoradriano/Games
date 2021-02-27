@@ -1,0 +1,10 @@
+package orientacao_objetos6;
+
+public class Player {
+	
+	//Método Construtor:
+	public Player() {
+		
+	}
+
+}

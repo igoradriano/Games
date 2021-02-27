@@ -1,0 +1,10 @@
+package orientacao_objetos7;
+
+public class Inimigo {
+	private int life = 100;
+	public void iniciarInimigo() {
+		System.out.println("Inimigo Inciado!");
+	}
+	
+
+}
