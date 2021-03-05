@@ -1,0 +1,103 @@
+package pong;
+
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+
+public class Game extends Canvas implements Runnable, KeyListener{
+	private static final long serialVersionUID = 1L;
+	public static int WIDTH = 240;
+	public static int HEIGHT = 120;
+	public static int SCALE = 3;
+	
+	public Player player;
+	public BufferedImage layer = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB); //layer para renderizar os gr[aficos
+	
+	public Game() {  //Método Construtor da classe Game. Lembrando que Game se extende a um Canvas 
+		this.setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
+		this.addKeyListener(this);
+		player = new Player(100, HEIGHT-10);
+	}
+	
+	public static void main(String[] args) {
+		Game game = new Game(); 
+		JFrame frame = new JFrame("pong");
+		frame.setResizable(false); //Nao redimensiona a Janela
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //parar o processo quando fechar a janela
+		frame.add(game);
+		frame.setVisible(true);
+		frame.pack();
+		frame.setLocationRelativeTo(null); //Janela no centro da tela
+		new Thread(game).start();
+	}
+	
+
+	public void tick() {
+		player.tick();
+	}
+	
+	public void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics g = layer.getGraphics();
+		player.render(g);
+		
+		g = bs.getDrawGraphics(); 
+		g.drawImage(layer, 0, 0, WIDTH*SCALE,HEIGHT*SCALE,null);
+		
+		
+		bs.show(); //mostrar na tela
+		
+	//O bufferStratagy é basicamente onde é feita toda a rendereização do game. Quando executamos
+	// pela primeira vez, o buffer ainda não existe, por isso criamos a condição de bs == null, para 
+	//saber se o buffer já existe. Caso não tenha ele cria um.
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			tick();
+			render();
+			try {
+				Thread.sleep(1000/60);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) { //verifica a tecla que foi pressionada, se for igual a tecla seta direita, faça isso
+			player.right = true;
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = true;
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}

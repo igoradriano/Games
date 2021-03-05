@@ -77,7 +77,7 @@ public class Game extends Canvas implements Runnable{  //Classe Game com Interfa
 		//Colocando um retangulo da cor que eu quero
 		
 		/*RENDERIZAÇÃO do JOGO*/
-		g.drawImage(player, x, 0,null); //Boneco imagem
+		g.drawImage(player, x, x,null); //Boneco imagem
 		/***/
 		g.dispose();//limpar dados que tem na imagem que foram utilizados antes
 		g.setColor(Color.cyan); // setando cores de outro objeto

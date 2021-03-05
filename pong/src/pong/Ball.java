@@ -1,0 +1,58 @@
+package pong;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
+
+public class Ball {
+	public double x,y,width,height; 
+	
+	public double dx,dy;
+	public double speed = 0.8;
+	
+	public Ball(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.width = 4;
+		this.height = 4;
+		
+		dx = new Random().nextGaussian();
+		dy = new Random().nextGaussian();
+		
+	}
+	
+	public void tick() {
+		//SISTEMA DE COLISÃO COM PAREDES LATERAIS
+		if(x+(dx*speed) + width >= Game.WIDTH) {
+			dx*=-1;	  //muda de direção
+		}else if(x + (dx*speed) < 0) {
+			dx*=-1;
+		}
+		if(y >= Game.HEIGHT) {
+			// PONTO DO COMPUTADOR
+		}else if(y < 0) {
+			//PONTO DO JOGADOR
+		}
+		
+		Rectangle bounds = new Rectangle((int)(x + (dx*speed)),(int)(y+(dy*speed)),(int)width, (int)height);
+		Rectangle boundsPlayer = new Rectangle(Game.player.x,Game.player.y,Game.player.width, Game.player.height);
+		Rectangle boundsEnemy = new Rectangle((int)Game.enemy.x,(int)Game.enemy.y,(int)Game.enemy.width,(int)Game.enemy.height);
+		
+		if(bounds.intersects(boundsPlayer)) {
+			dy*=-1;
+		}else if (bounds.intersects(boundsEnemy)) {
+			dy*=-1;
+		}
+		x+=dx*speed;
+		y+=dy*speed;
+		
+	}
+
+	public void render(Graphics g) {
+		g.setColor(Color.yellow);  //vou renderizar apenas com pixels, sem spritSheet
+		g.fillRect((int)x, (int)y, (int)width, (int)height); //(int) é um Cast
+		
+	}
+
+}

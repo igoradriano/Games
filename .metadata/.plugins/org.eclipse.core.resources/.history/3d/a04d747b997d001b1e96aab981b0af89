@@ -1,0 +1,17 @@
+package pong;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Player {
+	
+	public void tick() {
+		
+	}
+	
+	public void render(Graphics g) {  //para manipular os Gráficos dentro desse método
+		g.setColor(Color.blue);  //vou renderizar apenas com pixels, sem spritSheet
+		g.fillRect(100, 120-10, 40, 10);
+	}
+
+}
