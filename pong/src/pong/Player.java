@@ -15,7 +15,7 @@ public class Player {
 		this.x = x;
 		this.y = y;
 		this.width = 40;  //guardado internamente nesse método
-		this.height = 10;
+		this.height = 5;
 	}
 	
 	public void tick() {

@@ -14,13 +14,13 @@ public class Enemy {
 		this.x = x;
 		this.y = y;
 		this.width = 40;
-		this.height = 10;
+		this.height = 5;
 		
 	}
 	
 	public void tick() {
-		x += (Game.ball.x - x - 20); //acrescenta a cada renderização a diferença entre a posição da bola e a bosicao da barra
-		
+		x += (Game.ball.x - x - 6) * 0.1; //acrescenta a cada renderização a diferença entre a posição da bola e a bosicao da barra
+		//0.4 é multiplicado ao final para garantir que o inimigo so pegue 40% das bolas
 	}
 
 	public void render(Graphics g) {

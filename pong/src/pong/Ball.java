@@ -9,7 +9,7 @@ public class Ball {
 	public double x,y,width,height; 
 	
 	public double dx,dy;
-	public double speed = 0.8;
+	public double speed = 1.6;
 	
 	public Ball(int x, int y) {
 		this.x = x;
@@ -17,8 +17,11 @@ public class Ball {
 		this.width = 4;
 		this.height = 4;
 		
-		dx = new Random().nextGaussian();
-		dy = new Random().nextGaussian();
+		int angle = new Random().nextInt(120-45) + 46; // angulos entre 120 e 45, e somo sempre a 46 
+		dx = Math.cos(Math.toRadians(angle));
+		dy = Math.sin(Math.toRadians(angle));
+		//dx = new Random().nextGaussian(); nextGaussian gera numero entre zero e 1
+		//dy = new Random().nextGaussian();
 		
 	}
 	
@@ -31,8 +34,14 @@ public class Ball {
 		}
 		if(y >= Game.HEIGHT) {
 			// PONTO DO COMPUTADOR
+			System.out.println("Ponto do Inimigo!");
+			new Game(); //inicia um novo game quando o inimigo marca ponto
+			return;
 		}else if(y < 0) {
 			//PONTO DO JOGADOR
+			System.out.println("Ponto nosso! YAYY!");
+			new Game();  //incia um novo game quando marcamos um ponto
+			return;
 		}
 		
 		Rectangle bounds = new Rectangle((int)(x + (dx*speed)),(int)(y+(dy*speed)),(int)width, (int)height);
@@ -40,9 +49,21 @@ public class Ball {
 		Rectangle boundsEnemy = new Rectangle((int)Game.enemy.x,(int)Game.enemy.y,(int)Game.enemy.width,(int)Game.enemy.height);
 		
 		if(bounds.intersects(boundsPlayer)) {
-			dy*=-1;
+			int angle = new Random().nextInt(120-45) + 46; // angulos entre 120 e 45, e somo sempre a 46 
+			dx = Math.cos(Math.toRadians(angle));
+			dy = Math.sin(Math.toRadians(angle));
+			if (dy > 0) {
+				dy*=-1;
+			}
+			
 		}else if (bounds.intersects(boundsEnemy)) {
-			dy*=-1;
+			int angle = new Random().nextInt(120-45) + 46; // angulos entre 120 e 45, e somo sempre a 46 
+			dx = Math.cos(Math.toRadians(angle));
+			dy = Math.sin(Math.toRadians(angle));
+			if (dy < 0) {
+				dy*=-1;
+			}
+			
 		}
 		x+=dx*speed;
 		y+=dy*speed;
